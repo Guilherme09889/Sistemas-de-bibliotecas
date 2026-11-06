@@ -1,13 +1,12 @@
 package classes;
-import java.util.ArrayList;
 
 public class Livro extends Material{
     private String autor;
     private String numPaginas;
 
-    public Livro(Integer id, String titulo, boolean situacao, String autor, String numPaginas) {
-        super(id, titulo, situacao);
-        this.autor = autor;
+    public Livro(String titulo, String autor, String numPaginas) {
+        super(titulo);
+        this.autor = autor.toUpperCase();
         this.numPaginas = numPaginas;
     }
 
@@ -16,7 +15,7 @@ public class Livro extends Material{
     }
 
     public void setAutor(String autor) {
-        this.autor = autor;
+        this.autor = autor.toUpperCase();
     }
 
     public String getNumPaginas() {
@@ -27,14 +26,10 @@ public class Livro extends Material{
         this.numPaginas = numPaginas;
     }
 
-
     @Override
     public String toString() {
         return "Livro{" +
-                "id=" + getId() +
-                ", titulo='" + getTitulo() + '\'' +
-                ", situacao=" + isSituacao() +
-                ", autor='" + autor + '\'' +
+                "autor='" + autor + '\'' +
                 ", numPaginas='" + numPaginas + '\'' +
                 '}';
     }

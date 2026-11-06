@@ -1,22 +1,19 @@
 package classes;
+import java.util.UUID;
 
 public abstract class Material {
-    private Integer id;
+    private String id;
     private String titulo;
-    boolean situacao;
+    private boolean situacao;
 
-    public Material(Integer id, String titulo, boolean situacao) {
-        this.id = id;
-        this.titulo = titulo;
-        this.situacao = situacao;
+    public Material(String titulo) {
+        this.id = UUID.randomUUID().toString();
+        this.titulo = titulo.toUpperCase();
+        this.situacao = true;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getTitulo() {
@@ -24,7 +21,7 @@ public abstract class Material {
     }
 
     public void setTitulo(String titulo) {
-        this.titulo = titulo;
+        this.titulo = titulo.toUpperCase();
     }
 
     public boolean isSituacao() {

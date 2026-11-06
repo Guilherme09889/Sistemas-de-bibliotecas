@@ -56,4 +56,33 @@ public class SalvarDados {
             }
         }
     }
+
+    public static void listarLivros(){
+        if(livros.isEmpty()){
+            System.out.println("Nenhum livro cadastrado.");
+        } else {
+            System.out.println("Lista de livros cadastrados:");
+            for(Livro l : livros){
+                System.out.println(l);
+            }
+        }
+    }
+
+    public static void procurarLivroPorTitulo(String titulo){
+        titulo = titulo.trim();
+        if(titulo.isEmpty()){
+            System.out.println("Título inválido.");
+            return;
+        } else {
+            titulo = titulo.toUpperCase();
+            for(Livro l : livros){
+                if(l.getTitulo().equals(titulo)){
+                    System.out.println("Livro encontrado: " + l);
+                    return;
+                }
+            }
+            System.out.println("Livro não encontrado.");
+        }
+    }
+
 }
