@@ -26,6 +26,7 @@ public class Main {
                     " 6 - Procurar Material por Id\n" +
                     " 7 - Alterar Situação do Material por Id\n" +
                     " 8 - Emprestar Material por Id\n" +
+                    " 9 - Devolver Material por Id\n" +
                     " 0 - Sair");
 
             opcao = scanner.nextInt();
@@ -79,12 +80,26 @@ public class Main {
                     scanner.nextLine();
                     System.out.println("Digite o título do material que deseja procurar:");
                     String tituloProcurar = scanner.nextLine();
-                    procurarPorTitulo(tituloProcurar);
+                    if(tituloProcurar.trim().isEmpty()){
+                        System.out.println("Título inválido.");
+                        break;
+                    }
+                    Material materialTitulo = buscarMaterialPorTitulo(tituloProcurar);
+                    if(materialTitulo != null){
+                        System.out.println("Material encontrado: " + materialTitulo);
+                    } else {
+                        System.out.println("Material não encontrado.");
+                    }
                     break;
                 case 6:
                     System.out.println("Digite o ID do material que deseja procurar:");
                     Integer idProcurar = scanner.nextInt();
-                    buscarPorId(idProcurar);
+                    Material materialProcurar = buscarMaterialPorId(idProcurar);
+                    if(materialProcurar != null){
+                        System.out.println("Material encontrado: " + materialProcurar);
+                    } else {
+                        System.out.println("Material não encontrado.");
+                    }
                     break;
                 case 7:
                     System.out.println("Digite o ID do material:");
@@ -110,6 +125,18 @@ public class Main {
                     if(materialEmprestar != null){
                         if(materialEmprestar.emprestar()){
                             System.out.println("Material emprestado com sucesso: " + materialEmprestar);
+                        }
+                    } else {
+                        System.out.println("Material não encontrado.");
+                    }
+                    break;
+                case 9:
+                    System.out.println("Digite o ID do material que deseja devolver:");
+                    Integer idDevolver = scanner.nextInt();
+                    Material materialDevolver = buscarMaterialPorId(idDevolver);
+                    if(materialDevolver != null){
+                        if(materialDevolver.devolver()){
+                            System.out.println("Material devolvido com sucesso: " + materialDevolver);
                         }
                     } else {
                         System.out.println("Material não encontrado.");

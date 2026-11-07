@@ -51,6 +51,15 @@ public abstract class Material {
         return true;
     }
 
+    public boolean devolver() {
+        if(this.situacao == true){
+            System.out.println("Material não está emprestado.");
+            return false;
+        }
+        ativar();
+        return true;
+    }
+
 
     @Override
     public String toString() {

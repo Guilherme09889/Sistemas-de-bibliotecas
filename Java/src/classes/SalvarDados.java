@@ -34,15 +34,6 @@ public class SalvarDados {
         return null;
     }
 
-    public static void buscarPorId(Integer id){
-        Material m = buscarMaterialPorId(id);
-        if(m != null){
-            System.out.println("Material encontrado: " + m);
-        } else {
-            System.out.println("Material não encontrado.");
-        }
-    }
-
     public static void excluirPorId(Integer id){
         for(Material m : materiais){
             if(m.getId() == id){
@@ -65,20 +56,14 @@ public class SalvarDados {
         }
     }
 
-    public static void procurarPorTitulo(String titulo){
-        titulo = titulo.trim();
-        if(titulo.isEmpty()){
-            System.out.println("Título inválido.");
-            return;
-        }
-        titulo = titulo.toUpperCase();
+    public static Material buscarMaterialPorTitulo(String titulo){
+        titulo = titulo.trim().toUpperCase();
         for(Material m : materiais){
             if(m.getTitulo().equals(titulo)){
-                System.out.println("Material encontrado: " + m);
-                return;
+                return m;
             }
         }
-        System.out.println("Material não encontrado.");
+        return null;
     }
 
 }
