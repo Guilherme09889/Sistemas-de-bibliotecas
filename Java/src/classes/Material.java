@@ -22,10 +22,6 @@ public abstract class Material {
         return titulo;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo.toUpperCase();
-    }
-
     public boolean isSituacao() {
         return situacao;
     }
@@ -44,6 +40,15 @@ public abstract class Material {
             return;
         }
         this.situacao = false;
+    }
+
+    public boolean emprestar() {
+        if(this.situacao == false){
+            System.out.println("Material indisponível, já está emprestado.");
+            return false;
+        }
+        inativar();
+        return true;
     }
 
 

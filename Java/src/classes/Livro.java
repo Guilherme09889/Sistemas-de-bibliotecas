@@ -14,16 +14,8 @@ public class Livro extends Material{
         return autor;
     }
 
-    public void setAutor(String autor) {
-        this.autor = autor.toUpperCase();
-    }
-
     public String getNumPaginas() {
         return numPaginas;
-    }
-
-    public void setNumPaginas(String numPaginas) {
-        this.numPaginas = numPaginas;
     }
 
     @Override

@@ -14,15 +14,9 @@ public class Revista extends Material{
         return numeroEdicao;
     }
 
-    public void setNumeroEdicao(String numeroEdicao) {
-        this.numeroEdicao = numeroEdicao;
-    }
-
     public String getMesPublicacao() {
         return mesPublicacao;
     }
 
-    public void setMesPublicacao(String mesPublicacao) {
-        this.mesPublicacao = mesPublicacao;
-    }
+
 }
