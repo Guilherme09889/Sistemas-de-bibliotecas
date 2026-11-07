@@ -31,10 +31,18 @@ public abstract class Material {
     }
 
     public void ativar() {
+        if(this.situacao == true){
+            System.out.println("O material já está ativo.");
+            return;
+        }
         this.situacao = true;
     }
 
     public void inativar() {
+        if(this.situacao == false){
+            System.out.println("O material já está inativo.");
+            return;
+        }
         this.situacao = false;
     }
 
