@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 import classes.Livro;
+import classes.Material;
 import classes.Revista;
 import classes.SalvarDados;
 
@@ -12,16 +13,19 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
+        SalvarDados.carregarDadosTeste();
+
         int opcao;
         do{
             System.out.println("Escolha uma opção:\n" +
                     " 1 - Cadastrar Livro\n" +
                     " 2 - Cadastrar Revista\n" +
-                    " 3 - Excluir Livro\n" +
-                    " 4 - Excluir Revista\n" +
-                    " 5 - Listar Livros\n" +
-                    " 6 - Procurar Livro por Título\n" +
-                    " 10 - Sair");
+                    " 3 - Excluir Material por Id\n" +
+                    " 4 - Listar Materiais\n" +
+                    " 5 - Procurar Material por Título\n" +
+                    " 6 - Procurar Material por Id\n" +
+                    " 7 - Alterar Situação do Material por Id\n" +
+                    " 0 - Sair");
 
             opcao = scanner.nextInt();
 
@@ -35,13 +39,11 @@ public class Main {
                     System.out.println("Digite o número de páginas do livro:");
                     String numPaginasLivro = scanner.nextLine();
                     Livro livro = new Livro(tituloLivro, autorLivro, numPaginasLivro);
-                    System.out.println("Livro cadastrado com sucesso: " + livro);
-                    if(livro.getId() != null && livro.getTitulo() != null
+                    if(livro.getTitulo() != null
                             && livro.getAutor() != null && livro.getNumPaginas() != null){
-                        SalvarDados.salvarLivro(livro);
-                        System.out.println("Livro salvo com sucesso!");
+                        SalvarDados.salvarMaterial(livro);
                     } else {
-                        System.out.println("Erro ao salvar o livro. Verifique os dados e tente novamente.");
+                        System.out.println("Erro ao salvar o material. Verifique os dados e tente novamente.");
                     }
                     break;
 
@@ -56,39 +58,58 @@ public class Main {
                     String mesPublicacaoRevista = scanner.nextLine();
                     Revista revista = new Revista(tituloRevista, numeroEdicaoRevista,
                             mesPublicacaoRevista);
-                    System.out.println("Revista cadastrada com sucesso: " + revista);
-                    if(revista.getId() != null && revista.getTitulo() != null && revista.getNumeroEdicao()
+                    if(revista.getTitulo() != null && revista.getNumeroEdicao()
                             != null && revista.getMesPublicacao() != null){
-                        SalvarDados.salvarRevista(revista);
-                        System.out.println("Revista salva com sucesso!");
+                        SalvarDados.salvarMaterial(revista);
                     } else {
-                        System.out.println("Erro ao salvar a revista. Verifique os dados e tente novamente.");
+                        System.out.println("Erro ao salvar o material. Verifique os dados e tente novamente.");
                     }
                     break;
 
                 case 3:
-                    System.out.println("Excluir Livro selecionado.");
+                    System.out.println("Digite o ID do material que deseja excluir:");
+                    Integer idExcluir = scanner.nextInt();
+                    excluirPorId(idExcluir);
                     break;
                 case 4:
-                    System.out.println("Excluir Revista selecionado.");
+                    listarMateriais();
                     break;
                 case 5:
-                    listarLivros();
+                    scanner.nextLine();
+                    System.out.println("Digite o título do material que deseja procurar:");
+                    String tituloProcurar = scanner.nextLine();
+                    procurarPorTitulo(tituloProcurar);
                     break;
                 case 6:
-                    scanner.nextLine();
-                    System.out.println("Digite o título do livro que deseja procurar:");
-                    String tituloProcurar = scanner.nextLine();
-                    procurarLivroPorTitulo(tituloProcurar);
+                    System.out.println("Digite o ID do material que deseja procurar:");
+                    Integer idProcurar = scanner.nextInt();
+                    buscarPorId(idProcurar);
                     break;
-                case  10:
+                case 7:
+                    System.out.println("Digite o ID do material:");
+                    Integer idSituacao = scanner.nextInt();
+                    Material material = buscarMaterialPorId(idSituacao);
+                    if(material != null){
+                        System.out.println("Situação atual: " + material.isSituacao());
+                        System.out.println("1 - Ativar\n2 - Inativar");
+                        if(scanner.nextInt() == 1){
+                            material.ativar();
+                        } else {
+                            material.inativar();
+                        }
+                        System.out.println("Situação alterada: " + material);
+                    } else {
+                        System.out.println("Material não encontrado.");
+                    }
+                    break;
+                case  0:
                     System.out.println("Saindo do programa.");
                     break;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
             }
 
-        }while (opcao != 10);
+        }while (opcao != 0);
 
     }
 }

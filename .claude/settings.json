@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "ask": [
+      "me mostrar o que vai ser alterado"
+    ]
+  }
+}

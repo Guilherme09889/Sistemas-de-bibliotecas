@@ -2,87 +2,83 @@ package classes;
 import java.util.ArrayList;
 
 public class SalvarDados {
-    private static ArrayList<Livro> livros = new ArrayList<>();
-    private static ArrayList<Revista> revistas = new ArrayList<>();
+    private static ArrayList<Material> materiais = new ArrayList<>();
 
-    public static void salvarLivro(Livro livro){
-        livros.add(livro);
+    public static void carregarDadosTeste(){
+        materiais.add(new Livro("Clean Code", "Robert C. Martin", "464"));
+        materiais.add(new Livro("O Senhor dos Aneis", "J.R.R. Tolkien", "1178"));
+        materiais.add(new Livro("Dom Casmurro", "Machado de Assis", "256"));
+        materiais.add(new Revista("Superinteressante", "450", "Janeiro"));
+        materiais.add(new Revista("National Geographic", "312", "Marco"));
+        materiais.add(new Revista("Veja", "2900", "Agosto"));
+        System.out.println("Dados de teste carregados: " + materiais.size() + " materiais.\n");
     }
 
-    public static void salvarRevista(Revista revista){
-        revistas.add(revista);
-    }
-
-    public static void buscarLivroPorId(Integer id){
-        for(Livro livro : livros){
-            if(livro.getId().equals(id)){
-                System.out.println("Livro encontrado: " + livro);
+    public static void salvarMaterial(Material material){
+        for(Material m : materiais){
+            if(m.getTitulo().equals(material.getTitulo())){
+                System.out.println("Não foi possível salvar o material.");
                 return;
             }
         }
-        System.out.println("Livro não encontrado.");
+        materiais.add(material);
+        System.out.println("Material salvo com sucesso.");
     }
 
-    public static void buscarRevistaPorId(Integer Id){
-        for(Revista revista : revistas){
-            if(revista.getId().equals(Id)){
-                System.out.println("Revista encontrada: " + revista);
-                return;
-            } else {
-                System.out.println("Revista não encontrada.");
+    public static Material buscarMaterialPorId(Integer id){
+        for(Material m : materiais){
+            if(m.getId() == id){
+                return m;
             }
         }
+        return null;
     }
 
-    public static void excluirLivroId(Integer id){
-        for(Livro l : livros){
-            if(l.getId().equals(id)){
-                livros.remove(l);
-                System.out.println("Livro excluído com sucesso.");
-                return;
-            }
-        }
-        System.out.println("Livro não encontrado.");
-    }
-
-    public static void excluirRevista(Integer id){
-        for(Revista r : revistas){
-            if(r.getId().equals(id)){
-                revistas.remove(r);
-                System.out.println("Revista excluída com sucesso.");
-                return;
-            } else {
-                System.out.println("Revista não encontrada.");
-            }
-        }
-    }
-
-    public static void listarLivros(){
-        if(livros.isEmpty()){
-            System.out.println("Nenhum livro cadastrado.");
+    public static void buscarPorId(Integer id){
+        Material m = buscarMaterialPorId(id);
+        if(m != null){
+            System.out.println("Material encontrado: " + m);
         } else {
-            System.out.println("Lista de livros cadastrados:");
-            for(Livro l : livros){
-                System.out.println(l);
-            }
+            System.out.println("Material não encontrado.");
         }
     }
 
-    public static void procurarLivroPorTitulo(String titulo){
+    public static void excluirPorId(Integer id){
+        for(Material m : materiais){
+            if(m.getId() == id){
+                materiais.remove(m);
+                System.out.println("Material excluído com sucesso.");
+                return;
+            }
+        }
+        System.out.println("Material não encontrado.");
+    }
+
+    public static void listarMateriais(){
+        if(materiais.isEmpty()){
+            System.out.println("Nenhum material cadastrado.");
+            return;
+        }
+        System.out.println("Lista de materiais cadastrados:");
+        for(Material m : materiais){
+            System.out.println(m);
+        }
+    }
+
+    public static void procurarPorTitulo(String titulo){
         titulo = titulo.trim();
         if(titulo.isEmpty()){
             System.out.println("Título inválido.");
             return;
-        } else {
-            titulo = titulo.toUpperCase();
-            for(Livro l : livros){
-                if(l.getTitulo().equals(titulo)){
-                    System.out.println("Livro encontrado: " + l);
-                    return;
-                }
-            }
-            System.out.println("Livro não encontrado.");
         }
+        titulo = titulo.toUpperCase();
+        for(Material m : materiais){
+            if(m.getTitulo().equals(titulo)){
+                System.out.println("Material encontrado: " + m);
+                return;
+            }
+        }
+        System.out.println("Material não encontrado.");
     }
 
 }

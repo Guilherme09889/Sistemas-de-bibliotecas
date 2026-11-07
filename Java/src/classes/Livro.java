@@ -28,7 +28,7 @@ public class Livro extends Material{
 
     @Override
     public String toString() {
-        return "Livro{" +
+        return super.toString() + "Livro{" +
                 "autor='" + autor + '\'' +
                 ", numPaginas='" + numPaginas + '\'' +
                 '}';
