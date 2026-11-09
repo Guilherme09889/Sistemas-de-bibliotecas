@@ -41,12 +41,7 @@ public class Main {
                     System.out.println("Digite o número de páginas do livro:");
                     String numPaginasLivro = scanner.nextLine();
                     Livro livro = new Livro(tituloLivro, autorLivro, numPaginasLivro);
-                    if(livro.getTitulo() != null
-                            && livro.getAutor() != null && livro.getNumPaginas() != null){
-                        SalvarDados.salvarMaterial(livro);
-                    } else {
-                        System.out.println("Erro ao salvar o material. Verifique os dados e tente novamente.");
-                    }
+                    SalvarDados.salvarMaterial(livro);
                     break;
 
                 case 2:
@@ -60,12 +55,7 @@ public class Main {
                     String mesPublicacaoRevista = scanner.nextLine();
                     Revista revista = new Revista(tituloRevista, numeroEdicaoRevista,
                             mesPublicacaoRevista);
-                    if(revista.getTitulo() != null && revista.getNumeroEdicao()
-                            != null && revista.getMesPublicacao() != null){
-                        SalvarDados.salvarMaterial(revista);
-                    } else {
-                        System.out.println("Erro ao salvar o material. Verifique os dados e tente novamente.");
-                    }
+                    SalvarDados.salvarMaterial(revista);
                     break;
 
                 case 3:
@@ -80,10 +70,6 @@ public class Main {
                     scanner.nextLine();
                     System.out.println("Digite o título do material que deseja procurar:");
                     String tituloProcurar = scanner.nextLine();
-                    if(tituloProcurar.trim().isEmpty()){
-                        System.out.println("Título inválido.");
-                        break;
-                    }
                     Material materialTitulo = buscarMaterialPorTitulo(tituloProcurar);
                     if(materialTitulo != null){
                         System.out.println("Material encontrado: " + materialTitulo);

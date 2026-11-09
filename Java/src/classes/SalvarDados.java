@@ -1,6 +1,8 @@
 package classes;
 import java.util.ArrayList;
 
+import static classes.Utils.*;
+
 public class SalvarDados {
     private static ArrayList<Material> materiais = new ArrayList<>();
 
@@ -15,6 +17,24 @@ public class SalvarDados {
     }
 
     public static void salvarMaterial(Material material){
+        if(material == null || material.getTitulo() == null){
+            System.out.println("Erro ao salvar o material. Verifique os dados e tente novamente.");
+            return;
+        }
+        if(material instanceof Livro){ // para verificar se o material é do tipo Livro
+            Livro livro = (Livro) material; // casting para acessar os métodos específicos da classe Livro
+            if(livro.getAutor() == null || livro.getNumPaginas() == null){
+                System.out.println("Erro ao salvar o material. Verifique os dados e tente novamente.");
+                return;
+            }
+        }
+        if(material instanceof Revista){ // para verificar se o material é do tipo Revista
+            Revista revista = (Revista) material; // casting para acessar os métodos específicos da classe Revista
+            if(revista.getNumeroEdicao() == null || revista.getMesPublicacao() == null){
+                System.out.println("Erro ao salvar o material. Verifique os dados e tente novamente.");
+                return;
+            }
+        }
         for(Material m : materiais){
             if(m.getTitulo().equals(material.getTitulo())){
                 System.out.println("Não foi possível salvar o material.");
@@ -57,7 +77,11 @@ public class SalvarDados {
     }
 
     public static Material buscarMaterialPorTitulo(String titulo){
-        titulo = titulo.trim().toUpperCase();
+        titulo = padronizarString(titulo);
+        if(titulo == null){
+            System.out.println("Título inválido.");
+            return null;
+        }
         for(Material m : materiais){
             if(m.getTitulo().equals(titulo)){
                 return m;

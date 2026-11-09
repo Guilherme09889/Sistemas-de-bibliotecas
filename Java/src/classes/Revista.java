@@ -18,5 +18,11 @@ public class Revista extends Material{
         return mesPublicacao;
     }
 
-
+    @Override
+    public String toString() {
+        return super.toString() + "Revista{" +
+                "numeroEdicao='" + numeroEdicao + '\'' +
+                ", mesPublicacao='" + mesPublicacao + '\'' +
+                '}';
+    }
 }
