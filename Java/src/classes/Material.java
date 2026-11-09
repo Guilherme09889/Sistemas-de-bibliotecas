@@ -26,12 +26,16 @@ public abstract class Material {
         return situacao;
     }
 
+    private void setSituacao(boolean situacao) {
+        this.situacao = situacao;
+    }
+
     public void ativar() {
         if(this.situacao == true){
             System.out.println("O material já está ativo.");
             return;
         }
-        this.situacao = true;
+        setSituacao(true);
     }
 
     public void inativar() {
@@ -39,7 +43,7 @@ public abstract class Material {
             System.out.println("O material já está inativo.");
             return;
         }
-        this.situacao = false;
+        setSituacao(false);
     }
 
     public boolean emprestar() {
