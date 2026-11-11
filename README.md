@@ -7,11 +7,11 @@ sobrescrita, polimorfismo e uso de listas (`ArrayList`) em Java.
 ## Integrantes da equipe
 
 - [ Pedro Otávio ] _(nome 1)_
-- [ Guilherme ] _(nome 2)_
-- [ Arthur ] _(nome 3)_
-- [ Artur ] _(nome 4)_
-- [ Júlio ] _(nome 5)_
-- [ Gabriel ]
+- [ Guilherme Kochhann Reisdorfer] _(nome 2)_
+- [ Arthur Gabriel ALves Tomelin] _(nome 3)_
+- [ Artur Henrique Gloor D Avila] _(nome 4)_
+- [ Júlio Cesar Pancotte] _(nome 5)_
+- [ Gabriel Leindorf Ulsenheimer ]
 
 > Preencher com os nomes completos de todos os integrantes do grupo.
 
